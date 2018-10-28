@@ -26,18 +26,20 @@ include_directories(
 #    src/example.cpp)
 
 
-add_executable(example src/example.cpp)
-add_executable(dot src/dot.cpp)
-add_executable(triangle src/triangle.cpp)
-add_executable(triColor src/triColor.cpp)
-add_executable(rectangle src/rectangle.cpp)
-add_executable(rectMove src/rectMove.cpp)
+# add_executable(example src/example.cpp)
+# add_executable(dot src/dot.cpp)
+# add_executable(triangle src/triangle.cpp)
+# add_executable(triColor src/triColor.cpp)
+add_executable(2_4_rectangle src/2_4_rectangle.cpp)
+add_executable(2_5_rectMove src/2_5_rectMove.cpp)
+add_executable(3_4_3dPaintPad src/3_4_3dPaintPad.cpp)
 
 
-target_link_libraries(example ${OpenGL_LIBS})
-target_link_libraries(dot ${OpenGL_LIBS})
-target_link_libraries(triangle ${OpenGL_LIBS})
-target_link_libraries(triColor ${OpenGL_LIBS})
-target_link_libraries(rectangle ${OpenGL_LIBS})
-target_link_libraries(rectMove ${OpenGL_LIBS})
+# target_link_libraries(example ${OpenGL_LIBS})
+# target_link_libraries(dot ${OpenGL_LIBS})
+# target_link_libraries(triangle ${OpenGL_LIBS})
+# target_link_libraries(triColor ${OpenGL_LIBS})
+target_link_libraries(2_4_rectangle ${OpenGL_LIBS})
+target_link_libraries(2_5_rectMove ${OpenGL_LIBS})
+target_link_libraries(3_4_3dPaintPad ${OpenGL_LIBS})
 
