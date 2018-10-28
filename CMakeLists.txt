@@ -30,8 +30,14 @@ add_executable(example src/example.cpp)
 add_executable(dot src/dot.cpp)
 add_executable(triangle src/triangle.cpp)
 add_executable(triColor src/triColor.cpp)
+add_executable(rectangle src/rectangle.cpp)
+add_executable(rectMove src/rectMove.cpp)
+
 
 target_link_libraries(example ${OpenGL_LIBS})
 target_link_libraries(dot ${OpenGL_LIBS})
 target_link_libraries(triangle ${OpenGL_LIBS})
 target_link_libraries(triColor ${OpenGL_LIBS})
+target_link_libraries(rectangle ${OpenGL_LIBS})
+target_link_libraries(rectMove ${OpenGL_LIBS})
+
