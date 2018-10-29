@@ -37,6 +37,7 @@ add_executable(3_4_3dRotate src/3_4_3dRotate.cpp)
 add_executable(3_6_lines src/3_6_lines.cpp)
 add_executable(3_7_polygons src/3_7_polygons.cpp)
 add_executable(3_8_solidObject src/3_8_solidObject.cpp)
+add_executable(rubikCube src/rubikCube.cpp)
 
 
 
@@ -51,5 +52,4 @@ target_link_libraries(3_4_3dRotate ${OpenGL_LIBS})
 target_link_libraries(3_6_lines ${OpenGL_LIBS})
 target_link_libraries(3_7_polygons ${OpenGL_LIBS})
 target_link_libraries(3_8_solidObject ${OpenGL_LIBS})
-
-
+target_link_libraries(rubikCube ${OpenGL_LIBS})
