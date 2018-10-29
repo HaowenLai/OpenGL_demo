@@ -35,6 +35,8 @@ add_executable(2_5_rectMove src/2_5_rectMove.cpp)
 add_executable(3_4_3dPaintPad src/3_4_3dPaintPad.cpp)
 add_executable(3_4_3dRotate src/3_4_3dRotate.cpp)
 add_executable(3_6_lines src/3_6_lines.cpp)
+add_executable(3_7_polygons src/3_7_polygons.cpp)
+add_executable(3_8_solidObject src/3_8_solidObject.cpp)
 
 
 
@@ -47,4 +49,7 @@ target_link_libraries(2_5_rectMove ${OpenGL_LIBS})
 target_link_libraries(3_4_3dPaintPad ${OpenGL_LIBS})
 target_link_libraries(3_4_3dRotate ${OpenGL_LIBS})
 target_link_libraries(3_6_lines ${OpenGL_LIBS})
+target_link_libraries(3_7_polygons ${OpenGL_LIBS})
+target_link_libraries(3_8_solidObject ${OpenGL_LIBS})
+
 
