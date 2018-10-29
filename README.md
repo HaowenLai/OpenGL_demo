@@ -15,5 +15,9 @@
 - `2_5_rectMove.cpp`
 - `3_4_3dPaintPad.cpp`
 
+## Notes
+&ensp;&ensp; In my VM Ubuntu16.04, ***`glLineWidth()`*** does not work. The line range is [1.0,1.0] according to function *`glGetFloatv()`*. However, this function works in actual machine and the line range is [1.0,7.375].
+
+
 ## Author
 &ensp;&ensp; Derek Lai (HaowenLai)

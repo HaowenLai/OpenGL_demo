@@ -33,6 +33,9 @@ include_directories(
 add_executable(2_4_rectangle src/2_4_rectangle.cpp)
 add_executable(2_5_rectMove src/2_5_rectMove.cpp)
 add_executable(3_4_3dPaintPad src/3_4_3dPaintPad.cpp)
+add_executable(3_4_3dRotate src/3_4_3dRotate.cpp)
+add_executable(3_6_lines src/3_6_lines.cpp)
+
 
 
 # target_link_libraries(example ${OpenGL_LIBS})
@@ -42,4 +45,6 @@ add_executable(3_4_3dPaintPad src/3_4_3dPaintPad.cpp)
 target_link_libraries(2_4_rectangle ${OpenGL_LIBS})
 target_link_libraries(2_5_rectMove ${OpenGL_LIBS})
 target_link_libraries(3_4_3dPaintPad ${OpenGL_LIBS})
+target_link_libraries(3_4_3dRotate ${OpenGL_LIBS})
+target_link_libraries(3_6_lines ${OpenGL_LIBS})
 
