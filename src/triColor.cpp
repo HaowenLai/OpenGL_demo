@@ -4,22 +4,21 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#include <fstream>
+
 // #include "ogldev_util.h" //这里要添加作者的工具类用于读取文本文件
 #include "ogldev_math_3d.h"
 
+GLuint VAO;
 GLuint VBO;
-
-// 定义要读取的顶点着色器脚本和片断着色器脚本的文件名，作为文件读取路径（这样的话shader.vs和shader.fs文件要放到工程的根目录下，保证下面定义的是这两个文件的文件路径）
-// const char *pVSFileName = "shader.vs";
-// const char *pFSFileName = "shader.fs";
 
 static void RenderSceneCB()
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+    glEnableVertexAttribArray(0);
 
     // 依然还是绘制一个三角形
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -40,6 +39,9 @@ static void CreateVertexBuffer()
     Vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);
     Vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);
     Vertices[2] = Vector3f(0.0f, 1.0f, 0.0f);
+
+    // glGenVertexArrays(1, &VAO);
+    // glBindVertexArray(VAO);
 
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -81,6 +83,24 @@ static void AddShader(GLuint ShaderProgram, const char *pShaderText, GLenum Shad
     glAttachShader(ShaderProgram, ShaderObj);
 }
 
+// open and read the whole file
+static int ReadFile(const char* fileName, std::string& s)
+{
+    std::ifstream in(fileName);
+    
+    in.seekg(0, in.end);
+    int length = in.tellg();
+    in.seekg(0, in.beg);
+
+    char *temp = new char[length + 1];
+    in.read(temp, length);
+    temp[length] = '\0';
+    s = temp;
+
+    delete[] temp;
+    return 1;
+}
+
 // 编译着色器函数
 static void CompileShaders()
 {
@@ -94,23 +114,21 @@ static void CompileShaders()
     }
 
     // 存储着色器文本的字符串缓冲
-    // string vs, fs;
-    // // 分别读取着色器文件中的文本到字符串缓冲区
-    // if (!ReadFile(pVSFileName, vs))
-    // {
-    //     exit(1);
-    // };
-    // if (!ReadFile(pFSFileName, fs))
-    // {
-    //     exit(1);
-    // };
-    std::string vs = "#version 330  //告诉编译器我们的目标GLSL编译器版本是3.3\n"
-                     "layout(location = 0) in vec3 Position; // 绑定定点属性名和属性，方式二缓冲属性和shader属性对应映射\n"
-                     "void main(){gl_Position = vec4(0.5 * Position.x, 0.5 * Position.y, Position.z, 1.0);}";
-
-    std::string fs = "#version 330  //告诉编译器我们的目标GLSL编译器版本是3.3\n"
-                     "out vec4 FragColor; // 片段着色器的输出颜色变量\n"
-                     "void main(){FragColor = vec4(1.0, 0.0, 0.0, 1.0);}";
+    std::string vs, fs;
+    // 定义要读取的顶点着色器脚本和片断着色器脚本的文件名，作为文件读取路径
+    //（这样的话shader.vs和shader.fs文件要放到工程的根目录下，保证下面定义的是这两个文件的文件路径）
+    const char *pVSFileName = "../shaders/triColor.vs";
+    const char *pFSFileName = "../shaders/triColor.fs";
+    
+    // 分别读取着色器文件中的文本到字符串缓冲区
+    if (!ReadFile(pVSFileName, vs))
+    {
+        exit(1);
+    };
+    if (!ReadFile(pFSFileName, fs))
+    {
+        exit(1);
+    };
     
     // 添加顶点着色器和片段着色器
     AddShader(ShaderProgram, vs.c_str(), GL_VERTEX_SHADER);
@@ -149,7 +167,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(1024, 768);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("Tutorial 04");
+    glutCreateWindow("A colorful triangle");
 
     InitializeGlutCallbacks();
 
@@ -163,7 +181,7 @@ int main(int argc, char **argv)
 
     printf("GL version: %s\n", glGetString(GL_VERSION));
 
-    glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     CreateVertexBuffer();
 

@@ -33,19 +33,17 @@ void RenderScene()
     for (int faceIndex = 0; faceIndex < 6; faceIndex++)
     {
         // turn around to draw another face
+        glPushMatrix();
         if(faceIndex < 4 && faceIndex > 0)
         {
-            glPushMatrix();
             glRotatef(90*faceIndex, 1.0, 0, 0);
         }
         else if(faceIndex == 4)
         {
-            glPushMatrix();
             glRotatef(-90, 0.0, 1.0, 0);
         }
         else if(faceIndex == 5)
         {
-            glPushMatrix();
             glRotatef(90, 0.0, 1.0, 0);
         }
 
@@ -56,8 +54,10 @@ void RenderScene()
         {
             for (int i = 0; i < 4; i++)
             {
+                // vertical line
                 glVertex3f(-36.0 + i * 24, 36 , 36 + 0.01);
                 glVertex3f(-36.0 + i * 24, -36, 36 + 0.01);
+                // horizontal line
                 glVertex3f(36, -36.0 + i * 24 , 36 + 0.01);
                 glVertex3f(-36, -36.0 + i * 24, 36 + 0.01);
             }
